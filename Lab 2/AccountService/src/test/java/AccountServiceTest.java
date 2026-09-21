@@ -50,7 +50,7 @@ class AccountServiceTest {
     // ---------- registerAccount (CSV File Source) ---------- 
 
     @ParameterizedTest(name = "Row {index}: ({0},{1},{2}) → {3}")
-    @CsvFileSource(resources = "/data.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "data.csv", numLinesToSkip = 1)
     @DisplayName("registerAccount với dữ liệu từ test-data.csv")
     void registerAccount_FromCsv(String username, String password,
                                  String email, boolean expected) {
