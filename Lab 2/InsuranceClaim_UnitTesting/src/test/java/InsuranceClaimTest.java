@@ -142,4 +142,4 @@ class InsuranceClaimTest {
                 () -> assertTrue(output.contains("claimStatus='Pending'"))
         );
     }
-}
+}s
