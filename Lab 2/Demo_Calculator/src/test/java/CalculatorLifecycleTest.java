@@ -53,4 +53,4 @@ class CalculatorLifecycleTest {
 // Assert
         assertEquals(2, result);
     }
-} 
+}
