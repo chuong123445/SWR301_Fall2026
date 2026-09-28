@@ -42,9 +42,9 @@ class AccountServiceTest {
     }
 
     /** Arrange dùng chung: đăng ký tài khoản mẫu thành công. */
-//    void registerDefault() {
-//        assertEquals(ResultCode.SUCCESS, service.register(USER, EMAIL, PASS, PASS, DOB, PHONE));
-//    }
+   void registerDefault() {
+        assertEquals(ResultCode.SUCCESS, service.register(USER, EMAIL, PASS, PASS, DOB, PHONE));
+    }
 
     Account account() {
         return service.findByUsername(USER).orElseThrow();

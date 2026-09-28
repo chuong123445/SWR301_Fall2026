@@ -72,37 +72,37 @@ public class AccountService {
     }
 
     // ================= Đăng nhập =================
-    public ResultCode login(String username, String password) {
-        // BR-LOG-01
-        if (isBlank(username) || isBlank(password)) {
-            return ResultCode.INVALID_INPUT;
-        }
-        // BR-LOG-02, 03 (user không tồn tại)
-        Account account = accountsByUsername.get(key(username));
-        if (account == null) {
-            return ResultCode.INVALID_CREDENTIALS;
-        }
-        // BR-LOG-04
-        if (account.getStatus() == AccountStatus.DISABLED) {
-            return ResultCode.ACCOUNT_DISABLED;
-        }
-        // BR-LOG-06: đang khóa -> từ chối, không tăng bộ đếm
-        if (account.isLocked()) {
-            return ResultCode.ACCOUNT_LOCKED;
-        }
-        // BR-LOG-03, 05: sai mật khẩu
-        if (!PasswordHasher.matches(account.getSalt(), password, account.getCurrentPasswordHash())) {
-            account.incrementFailedAttempts();
-            if (account.getFailedAttempts() >= MAX_FAILED_ATTEMPTS) {
-                account.lock();
-                return ResultCode.ACCOUNT_LOCKED;
-            }
-            return ResultCode.INVALID_CREDENTIALS;
-        }
-        // BR-LOG-08
-        account.resetFailedAttempts();
-        return ResultCode.SUCCESS;
-    }
+//    public ResultCode login(String username, String password) {
+//        // BR-LOG-01
+//        if (isBlank(username) || isBlank(password)) {
+//            return ResultCode.INVALID_INPUT;
+//        }
+//        // BR-LOG-02, 03 (user không tồn tại)
+//        Account account = accountsByUsername.get(key(username));
+//        if (account == null) {
+//            return ResultCode.INVALID_CREDENTIALS;
+//        }
+//        // BR-LOG-04
+//        if (account.getStatus() == AccountStatus.DISABLED) {
+//            return ResultCode.ACCOUNT_DISABLED;
+//        }
+//        // BR-LOG-06: đang khóa -> từ chối, không tăng bộ đếm
+//        if (account.isLocked()) {
+//            return ResultCode.ACCOUNT_LOCKED;
+//        }
+//        // BR-LOG-03, 05: sai mật khẩu
+//        if (!PasswordHasher.matches(account.getSalt(), password, account.getCurrentPasswordHash())) {
+//            account.incrementFailedAttempts();
+//            if (account.getFailedAttempts() >= MAX_FAILED_ATTEMPTS) {
+//                account.lock();
+//                return ResultCode.ACCOUNT_LOCKED;
+//            }
+//            return ResultCode.INVALID_CREDENTIALS;
+//        }
+//        // BR-LOG-08
+//        account.resetFailedAttempts();
+//        return ResultCode.SUCCESS;
+//    }
 
     // ================= Đổi mật khẩu (BONUS) =================
     public ResultCode changePassword(String username, String oldPassword,
